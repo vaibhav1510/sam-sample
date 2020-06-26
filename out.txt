@@ -1,0 +1,85 @@
+Deploying with following values
+===============================
+Stack name                 : sam-app
+Region                     : us-east-1
+Confirm changeset          : True
+Deployment s3 bucket       : aws-sam-cli-managed-default-samclisourcebucket-hc5gk4p52mfb
+Capabilities               : ["CAPABILITY_IAM"]
+Parameter overrides        : {}
+
+Initiating deployment
+=====================
+Uploading to sam-app/6239ef64ef94619da0aa11ff67fa630f  7155 / 7155.0  (100.00%)
+HelloWorldFunction may not have authorization defined.
+Uploading to sam-app/9019fb708589b11ff76fb526d8381c5b.template  1181 / 1181.0  (100.00%)
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                           LogicalResourceId                                   ResourceType
+---------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                               HelloWorldFunctionHelloWorldPermissionProd          AWS::Lambda::Permission
++ Add                                               HelloWorldFunctionRole                              AWS::IAM::Role
++ Add                                               HelloWorldFunction                                  AWS::Lambda::Function
++ Add                                               ServerlessRestApiDeployment47fc2d5f9d               AWS::ApiGateway::Deployment
++ Add                                               ServerlessRestApiProdStage                          AWS::ApiGateway::Stage
++ Add                                               ServerlessRestApi                                   AWS::ApiGateway::RestApi
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:233543812150:changeSet/samcli-deploy1593149275/d953d7cd-c889-4996-a294-53d1eeb5ce1a
+
+
+Previewing CloudFormation changeset before deployment
+======================================================
+Deploy this changeset? [y/N]: y
+
+2020-06-26 10:58:59 - Waiting for stack create/update to complete
+
+CloudFormation events from changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                         ResourceType                           LogicalResourceId                      ResourceStatusReason
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS                     AWS::IAM::Role                         HelloWorldFunctionRole                 -
+CREATE_IN_PROGRESS                     AWS::IAM::Role                         HelloWorldFunctionRole                 Resource creation Initiated
+CREATE_COMPLETE                        AWS::IAM::Role                         HelloWorldFunctionRole                 -
+CREATE_IN_PROGRESS                     AWS::Lambda::Function                  HelloWorldFunction                     -
+CREATE_IN_PROGRESS                     AWS::Lambda::Function                  HelloWorldFunction                     Resource creation Initiated
+CREATE_COMPLETE                        AWS::Lambda::Function                  HelloWorldFunction                     -
+CREATE_IN_PROGRESS                     AWS::ApiGateway::RestApi               ServerlessRestApi                      Resource creation Initiated
+CREATE_IN_PROGRESS                     AWS::ApiGateway::RestApi               ServerlessRestApi                      -
+CREATE_COMPLETE                        AWS::ApiGateway::RestApi               ServerlessRestApi                      -
+CREATE_IN_PROGRESS                     AWS::Lambda::Permission                HelloWorldFunctionHelloWorldPermissi   Resource creation Initiated
+                                                                            onProd
+CREATE_IN_PROGRESS                     AWS::Lambda::Permission                HelloWorldFunctionHelloWorldPermissi   -
+                                                                            onProd
+CREATE_IN_PROGRESS                     AWS::ApiGateway::Deployment            ServerlessRestApiDeployment47fc2d5f9   -
+                                                                            d
+CREATE_COMPLETE                        AWS::ApiGateway::Deployment            ServerlessRestApiDeployment47fc2d5f9   -
+                                                                            d
+CREATE_IN_PROGRESS                     AWS::ApiGateway::Deployment            ServerlessRestApiDeployment47fc2d5f9   Resource creation Initiated
+                                                                            d
+CREATE_IN_PROGRESS                     AWS::ApiGateway::Stage                 ServerlessRestApiProdStage             Resource creation Initiated
+CREATE_IN_PROGRESS                     AWS::ApiGateway::Stage                 ServerlessRestApiProdStage             -
+CREATE_COMPLETE                        AWS::ApiGateway::Stage                 ServerlessRestApiProdStage             -
+CREATE_COMPLETE                        AWS::Lambda::Permission                HelloWorldFunctionHelloWorldPermissi   -
+                                                                            onProd
+CREATE_COMPLETE                        AWS::CloudFormation::Stack             sam-app                                -
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CloudFormation outputs from deployed stack
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Outputs
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Key                 HelloWorldFunctionIamRole
+Description         Implicit IAM Role created for Hello World function
+Value               arn:aws:iam::233543812150:role/sam-app-HelloWorldFunctionRole-1STZLUWHXBC3I
+
+Key                 HelloWorldApi
+Description         API Gateway endpoint URL for Prod stage for Hello World function
+Value               https://inlgr5m9oc.execute-api.us-east-1.amazonaws.com/Prod/hello/
+
+Key                 HelloWorldFunction
+Description         Hello World Lambda Function ARN
+Value               arn:aws:lambda:us-east-1:233543812150:function:sam-app-HelloWorldFunction-1UOOVNANDTEWG
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
