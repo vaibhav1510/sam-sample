@@ -1,4 +1,4 @@
-package Currency;
+package currency;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
