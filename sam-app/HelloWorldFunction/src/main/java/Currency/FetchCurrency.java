@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import Utils.GsonParser;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import helloworld.GatewayResponse;
@@ -23,7 +24,12 @@ public class FetchCurrency implements RequestHandler<Object, Object> {
         headers.put("X-Custom-Header", "application/json");
         try {
             final String pageContents = this.getPageContents("https://checkip.amazonaws.com");
-            String output = String.format("{ \"message\": \"hello world\", \"location\": \"%s\" }", pageContents);
+
+            Currency c = new Currency()
+                    .setCurrencyCode("USD")
+                    .setName("US Dollars");
+            String output = GsonParser.convert(Currency.class, c);
+
             return new GatewayResponse(output, headers, 200);
         } catch (IOException e) {
             return new GatewayResponse("{}", headers, 500);
